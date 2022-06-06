@@ -7,7 +7,7 @@ import Menu from "./Component/Menu/Menu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 const Header = styled.header`
   width: 100%;
-  min-height: 200px;
+  min-height: 200px; 
 `;
 
 const Footer = styled.footer`
