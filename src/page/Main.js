@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import Board from "../Component/Board/Board";
+import SimplePageTemplate from "../Template/SimplePageTemplate";
+import ListContainer from "../Container/ListContainer";
 
 const Mainpage = () => {
-  return <Board />;
+  return (
+    <SimplePageTemplate>
+      <ListContainer />  
+    </SimplePageTemplate>
+    );
 };
 export default Mainpage;
