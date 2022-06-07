@@ -36,7 +36,7 @@ const Write = () => {
   };
   useEffect(() => {
     dispatch(initForm("write"));
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     if (errorWrite === false) {
       console.log("성공");

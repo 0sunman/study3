@@ -101,6 +101,9 @@ const board = handleActions(
     [INIT_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initState[form],
+      errorList: null,
+      errorWrite: null,
+      errorContent: null,
     }),
     [WRITE_CONTENT]: (state, { payload: write }) => ({
       ...state,
