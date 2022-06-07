@@ -16,9 +16,9 @@ const WriteContainer = () =>{
     });
     const onChange = (e) => {
         try {
-        setData({ ...data, [e.target.name]: e.target.value });
+            setData({ ...data, [e.target.name]: e.target.value });
         } catch (err) {
-        console.log(err);
+            console.log(err);
         }
     };
     const onClick = () => {
