@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { readList } from "../../module/board";
 import BoardRow from "./BoardRow";
 const BoardWrap = styled.div`
   margin: 0 auto;
@@ -17,6 +18,11 @@ const BoardFooter = styled.div``;
 
 const Board = () => {
   const record = useSelector(({ board }) => [...board.list]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(readList());
+  }, [dispatch]);
   return (
     <BoardWrap>
       <BoardHeader>
@@ -27,6 +33,7 @@ const Board = () => {
             author: "작성자",
             date: "작성일",
           }}
+          type="head"
         ></BoardRow>
       </BoardHeader>
       <BoardBody>

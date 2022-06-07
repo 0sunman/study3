@@ -3,11 +3,12 @@ import styled from "styled-components";
 import "./App.css";
 import Main from "./page/Main";
 import Write from "./page/Write";
+import Page from "./page/Page";
 import Menu from "./Component/Menu/Menu";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 const Header = styled.header`
   width: 100%;
-  min-height: 200px; 
+  min-height: 200px;
 `;
 
 const Footer = styled.footer`
@@ -32,6 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/write" element={<Write />} />
+            <Route path="/page/*" element={<Page />} />
           </Routes>
         </Content>
         <Footer>

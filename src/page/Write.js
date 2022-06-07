@@ -2,26 +2,50 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeInput, initForm, writeContent } from "../module/board";
+import { useNavigate } from "react-router-dom";
 const Write = () => {
   const dispatch = useDispatch();
-  const board = useSelector(({ board }) => ({ board }));
+  const navigate = useNavigate();
+  const { board } = useSelector(({ board }) => ({
+    board,
+  }));
+  const { errorWrite } = board;
   const [data, setData] = useState({
     author: "",
     subject: "",
     content: "",
   });
   const onChange = (e) => {
+    try {
+      setData({ ...data, [e.target.name]: e.target.value });
+    } catch (err) {
+      console.log(err);
+    }
+    /*
     dispatch(
       changeInput({ form: "write", key: e.target.name, value: e.target.value })
-    );
+    );*/
   };
   const onClick = () => {
     console.log(data);
-    dispatch(writeContent(data));
+    try {
+      dispatch(writeContent(data));
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     dispatch(initForm("write"));
   }, []);
+  useEffect(() => {
+    if (errorWrite === false) {
+      console.log("성공");
+      navigate("/");
+    }
+    if (errorWrite) {
+      console.log(errorWrite);
+    }
+  }, [errorWrite]);
   useEffect(() => {
     console.log(board);
   }, [board]);
