@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import BoardItem from "./BoardItem";
+import ListItem from "./ListItem";
 import { Link } from "react-router-dom";
 
-const BoardGridContainer = styled.div`
+const ListGridContainer = styled.div`
   display: grid;
   border-top: 1px solid #000;
   grid-template-columns: 0.5fr 2fr 0.5fr 1fr;
@@ -18,24 +18,24 @@ const BoardGridContainer = styled.div`
   }
 `;
 
-const BoardRow = ({ record, type }) => {
+const ListRow = ({ record, type }) => {
   if (record === undefined) {
     return;
   }
   const { num, subject, author, date } = record;
   return (
-    <BoardGridContainer>
-      <BoardItem>{num}</BoardItem>
-      <BoardItem>
+    <ListGridContainer>
+      <ListItem>{num}</ListItem>
+      <ListItem>
         {type !== "head" ? (
           <Link to={"/page/" + num}>{subject}</Link>
         ) : (
           <span>{subject}</span>
         )}
-      </BoardItem>
-      <BoardItem>{author}</BoardItem>
-      <BoardItem>{date}</BoardItem>
-    </BoardGridContainer>
+      </ListItem>
+      <ListItem>{author}</ListItem>
+      <ListItem>{date}</ListItem>
+    </ListGridContainer>
   );
 };
-export default BoardRow;
+export default ListRow;
