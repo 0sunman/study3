@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { readList } from "../../module/board";
+import { initForm, readList } from "../../module/board";
 import BoardRow from "./BoardRow";
 const BoardWrap = styled.div`
   margin: 0 auto;
@@ -18,11 +18,16 @@ const BoardFooter = styled.div``;
 
 const Board = () => {
   const record = useSelector(({ board }) => [...board.list]);
+  const board = useSelector(({board})=>(board))
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(initForm("list"))
     dispatch(readList());
   }, [dispatch]);
+  useEffect(()=>{
+    console.log(board);
+  },[board])
   return (
     <BoardWrap>
       <BoardHeader>

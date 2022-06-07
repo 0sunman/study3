@@ -56,7 +56,7 @@ const Page = () => {
     const param = location.pathname.split("/")[paramsLength - 1];
     dispatch(initForm("page"));
     dispatch(readContent(param));
-  }, []);
+  }, [dispatch,location]);
   return (
     <PageWrapper>
       <div>

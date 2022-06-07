@@ -6,10 +6,8 @@ import { useNavigate } from "react-router-dom";
 const Write = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { board } = useSelector(({ board }) => ({
-    board,
-  }));
-  const { errorWrite } = board;
+  const { errorWrite } = useSelector(({ board }) => (board));
+  const board = useSelector(({ board }) => (board));
   const [data, setData] = useState({
     author: "",
     subject: "",
