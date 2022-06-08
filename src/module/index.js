@@ -2,7 +2,8 @@ import { combineReducers } from "redux";
 import { all } from "redux-saga/effects";
 
 import board, { boardSaga } from "./board";
-const reducer = combineReducers({ board });
+import user from "./user";
+const reducer = combineReducers({ board,user });
 export function* rootSaga() {
   yield all([boardSaga()]);
 }

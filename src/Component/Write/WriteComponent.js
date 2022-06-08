@@ -30,7 +30,7 @@ const SimpleInputComponent = ({ name, onChange }) => {
   return <SimpleInput type="text" name={name} onChange={onChange} />;
 };
 
-const WriteComponent = ({ onChange, onClick, onChangeField }) => {
+const WriteComponent = ({ onChange, onClick, onChangeField, isLoading }) => {
   const author = <SimpleInputComponent name="author" onChange={onChange} />;
   const subject = <SimpleInputComponent name="subject" onChange={onChange} />;
   const content = <Editor onChangeField={onChangeField} />;
@@ -41,7 +41,7 @@ const WriteComponent = ({ onChange, onClick, onChangeField }) => {
     <>
       <PageComponent {...props} />
       <ButtonArea>
-        <button onClick={onClick}>게시글 올리기</button>
+        <button onClick={onClick} disabled={isLoading}>게시글 올리기</button>
       </ButtonArea>
     </>
   );

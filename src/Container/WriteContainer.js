@@ -7,7 +7,7 @@ import WriteComponent from "../Component/Write/WriteComponent";
 const WriteContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { errorWrite } = useSelector(({ board }) => board);
+  const { errorWrite, isLoading } = useSelector(({ board }) => board);
   const [writeData, setwriteData] = useState({
     author: "",
     subject: "",
@@ -32,7 +32,7 @@ const WriteContainer = () => {
       console.log(err);
     }
   };
-  const props = { onClick, onChange, onChangeField };
+  const props = { onClick, onChange, onChangeField, isLoading };
 
   useEffect(() => {
     setwriteData({ ...writeData, content });

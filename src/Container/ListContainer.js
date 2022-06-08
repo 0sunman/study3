@@ -8,6 +8,7 @@ const ListContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(initForm("content"));
     dispatch(initForm("list"));
     dispatch(readList());
   }, [dispatch]);

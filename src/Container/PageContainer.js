@@ -12,10 +12,9 @@ const PageContainer = () => {
   const { content: props } = board;
 
   useEffect(() => {
-    dispatch(initForm("page"));
+    dispatch(initForm("content"));
     const paramsLength = location.pathname.split("/").length;
     const param = location.pathname.split("/")[paramsLength - 1];
-    dispatch(initForm("page"));
     dispatch(readContent(param));
   }, [dispatch, location]);
 
