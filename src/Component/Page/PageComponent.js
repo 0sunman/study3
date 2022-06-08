@@ -33,6 +33,10 @@ div:nth-child(3) > div {
   margin: 10px;
   text-align: left;
 }
+
+@media(max-width:787px){
+  width:100%;
+}
 `;
 const GridContainer = styled.div``;
 const GridItem = styled.div``;
