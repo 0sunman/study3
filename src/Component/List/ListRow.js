@@ -4,12 +4,19 @@ import { Link } from "react-router-dom";
 
 const ListGridContainer = styled.div`
   display: grid;
+  line-height: 40px;
   border-top: 1px solid #000;
   grid-template-columns: 0.5fr 2fr 0.5fr 1fr;
+  @media (max-width: 787px) {
+    & > div:nth-child(1) {
+      display: none;
+    }
+    grid-template-columns: 3fr 0.5fr 1fr;
+  }
   grid-template-rows: repeat(1, 40px);
-  line-height: 40px;
-  &:nth-child(4) {
+  & > div {
     text-overflow: ellipsis;
+    text-align: center;
     overflow: hidden;
   }
   a {
@@ -28,13 +35,15 @@ const ListRow = ({ record, type }) => {
       <ListItem>{num}</ListItem>
       <ListItem>
         {type !== "head" ? (
-          <Link to={"/page/" + num}>{subject}</Link>
+          <Link to={"/page/" + num}>
+            {subject === "" ? "[ 비어있음 ]" : subject}
+          </Link>
         ) : (
-          <span>{subject}</span>
+          <span>{subject === "" ? "[ 비어있음 ]" : subject}</span>
         )}
       </ListItem>
-      <ListItem>{author}</ListItem>
-      <ListItem>{date}</ListItem>
+      <ListItem>{author === "" ? "무명" : author}</ListItem>
+      <ListItem>{date === "작성일" ? "작성일" : "개발중"}</ListItem>
     </ListGridContainer>
   );
 };

@@ -4,47 +4,54 @@ import { useState, useEffect } from "react";
 import { writeContent, initForm } from "../module/board";
 
 import WriteComponent from "../Component/Write/WriteComponent";
-const WriteContainer = () =>{
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { errorWrite } = useSelector(({ board }) => (board));
+const WriteContainer = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { errorWrite } = useSelector(({ board }) => board);
+  const [writeData, setwriteData] = useState({
+    author: "",
+    subject: "",
+    content: "",
+  });
+  const [content, setContent] = useState("");
+  const onChange = (e) => {
+    try {
+      setwriteData({ ...writeData, [e.target.name]: e.target.value });
+      console.log(writeData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const onChangeField = ({ value }) => {
+    setContent(value);
+  };
+  const onClick = () => {
+    try {
+      dispatch(writeContent(writeData));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const props = { onClick, onChange, onChangeField };
 
-    const [data, setData] = useState({
-        author: "",
-        subject: "",
-        content: "",
-    });
-    const onChange = (e) => {
-        try {
-            setData({ ...data, [e.target.name]: e.target.value });
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    const onClick = () => {
-        console.log(data);
-        try {
-        dispatch(writeContent(data));
-        } catch (err) {
-        console.log(err);
-        }
-    };
-    useEffect(() => {
-        dispatch(initForm("write"));
-    }, [dispatch]);
-    useEffect(() => {
-        if (errorWrite === false) {
-        console.log("성공");
-        navigate("/");
-        }
-        if (errorWrite) {
-        console.log(errorWrite);
-        }
-    }, [errorWrite,navigate]);
+  useEffect(() => {
+    setwriteData({ ...writeData, content });
+    console.log(writeData);
+  }, [content]);
 
-    const props = {onClick, onChange};
-    return (
-        <WriteComponent {...props}></WriteComponent>
-    );
-}
-export default WriteContainer
+  useEffect(() => {
+    dispatch(initForm("write"));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (errorWrite === false) {
+      navigate("/");
+    }
+    if (errorWrite) {
+      console.log(errorWrite);
+    }
+  }, [errorWrite, navigate]);
+
+  return <WriteComponent type="write" {...props}></WriteComponent>;
+};
+export default WriteContainer;
